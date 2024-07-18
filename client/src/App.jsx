@@ -1,9 +1,19 @@
+import Navigation from "./components/navigation/Navigation";
+import HomePage from "./components/home/HomePage";
+import Footer from "./components/footer/Footer";
+
 function App() {
   return (
-  <>
-  <h1>Welcom World</h1>
-  </>
-  )
+    <div className="wrapper">
+      <Navigation />
+
+      <main className="box">
+        <HomePage/>
+      </main>
+
+      <Footer />
+    </div>
+  );
 }
 
 export default App;
