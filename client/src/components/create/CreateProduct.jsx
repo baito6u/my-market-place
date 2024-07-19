@@ -41,8 +41,8 @@ const CreateProduct = () => {
             placeholder="Upload a photo..."
           />
 
-          <label htmlFor="summary">Summary:</label>
-          <textarea name="summary" id="summary"></textarea>
+          <label htmlFor="description">Description:</label>
+          <textarea name="description" id="description"></textarea>
 
           <input
             className={`${styles.btn} ${styles.submit}`}
