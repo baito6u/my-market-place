@@ -1,7 +1,21 @@
-import React from 'react';
-import styles from './CatalogPage.module.css';
+import { useEffect, useState } from "react";
+
+import styles from "./CatalogPage.module.css";
+
+import * as productsAPI from "../../api/productsAPI";
 
 function CatalogPage() {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    productsAPI
+      .GetAll()
+      .then((result) => setProducts(result))
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <div className={styles.catalog}>
       <h2>Catalog</h2>
