@@ -6,8 +6,9 @@ async function requester(method, url, data) {
   }
 
   if (data) {
+    options.body = JSON.stringify(data);
     options.headers = {
-      "Content-Type": aplication / json,
+      "Content-Type": "aplication/json"
     };
 
     options.body = JSON.stringify(data);
