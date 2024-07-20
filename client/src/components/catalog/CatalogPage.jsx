@@ -21,19 +21,11 @@ function CatalogPage() {
     <div className={styles.catalog}>
       <h2>Catalog</h2>
 
-      {products.map(product => <Product key={product._id} {...product} />)}
-      
-
-      {/* <div className={styles.productList}>
-        <div className={styles.productItem}>
-          <h3>Product 1</h3>
-          <p>Description of product 1</p>
-        </div>
-        <div className={styles.productItem}>
-          <h3>Product 2</h3>
-          <p>Description of product 2</p>
-        </div>
-      </div> */}
+      {products.length > 0 ? (
+        products.map((product) => <Product key={product._id} {...product} />)
+      ) : (
+        <h3 className="no-products">There is no products in data base yet!</h3>
+      )}
     </div>
   );
 }
