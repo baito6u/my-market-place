@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 
 import styles from "./CatalogPage.module.css";
 
-import * as productsAPI from "../../api/productsAPI";
 import Product from "./productItem/Product";
+import productsAPI from "../../api/productsAPI";
 
 function CatalogPage() {
   const [products, setProducts] = useState([]);
