@@ -2,7 +2,7 @@ import * as requester from "./requester";
 
 const BASE_URL = "http://localhost:3030/jsonstore/products";
 
-export const GetAll = async () => {
+const GetAll = async () => {
   const result = await requester.get(BASE_URL);
 
   const products = Object.values(result);
@@ -10,11 +10,18 @@ export const GetAll = async () => {
   return products;
 };
 
-export const getOne = (productId) => requester.get(`${BASE_URL}/${productId}`);
+const getOne = (productId) => requester.get(`${BASE_URL}/${productId}`);
 
-const productsAPI = {
-    GetAll,
-    getOne,
+const create =  async (productData) => { 
+  const result = await requester.post(BASE_URL, productData);
+
+    return result;
 }
 
-export default productsAPI
+const productsAPI = {
+  GetAll,
+  getOne,
+  create,
+};
+
+export default productsAPI;
