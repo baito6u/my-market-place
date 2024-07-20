@@ -18,12 +18,12 @@ function App() {
       <main className="box">
         <Routes>
           <Route path="/" element={<HomePage />}/>
-          <Route path="/login" element={<LoginPage />}/>
-          <Route path="/register" element={<RegisterPage />}/>
           <Route path="/catalog" element={<CatalogPage />}/>
           <Route path="/catalog/:productId/details" element={<DetailsPage />}/>
-          <Route path="/cart" element={<MyCartPage />}/>
           <Route path="/create" element={<CreateProduct />}/>
+          <Route path="/login" element={<LoginPage />}/>
+          <Route path="/register" element={<RegisterPage />}/>
+          <Route path="/cart" element={<MyCartPage />}/>
         </Routes>
       </main>
 

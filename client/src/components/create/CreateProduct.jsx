@@ -1,10 +1,30 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+
 import styles from "./CreateProduct.module.css";
+import productsAPI from "../../api/productsAPI";
 
 const CreateProduct = () => {
+  const navigate = useNavigate();
+
+  const createProductHandler = async (e) => {
+    e.preventDefault();
+
+    const productData = Object.fromEntries(new FormData(e.currentTarget));
+
+    try {
+      await productsAPI.create(productData);
+      navigate("/catalog");
+    } catch (error) {
+      // TODO: Error notification
+      console.log(error);
+    }
+
+  };
+
   return (
     <section id="create-page" className={styles.auth}>
-      <form id="create">
+      <form id="create" onSubmit={createProductHandler}>
         <div className={styles.container}>
           <h1>Create Product</h1>
 

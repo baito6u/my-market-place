@@ -22,5 +22,21 @@
         "imageUrl": "https://th.bing.com/th/id/OIP.8B4d56wUuLWwavQsEWLLZQHaJ4?w=184&h=245&c=7&r=0&o=5&pid=1.7",
         "description": "Two Pieces Red Prom Dress,Tulle Off Shoulder Evening Dresses",
         "_id": "cb5ef803-b502-4b33-9dc8-0520c6047774"
+    },
+    "66055ddd-d451-42ab-9a6a-daaff74aa0c3": {
+        "title": "Sun glasses ",
+        "category": "glasses",
+        "price": "200",
+        "imageUrl": "https://sites.psu.edu/siowfa16/files/2016/11/fashion-glasses-1pyhxci.png",
+        "description": " These glasses are ideal for ladies and gentlemen who spend (a lot of) time in front of their screens.",
+        "_id": "66055ddd-d451-42ab-9a6a-daaff74aa0c3"
+    },
+    "286b9ce2-b70c-476c-ad42-0c780f7aa237": {
+        "title": "Mans pants",
+        "category": "pants",
+        "price": "30",
+        "imageUrl": "https://oldnavy.gap.com/webcontent/0019/840/895/cn19840895.jpg",
+        "description": "Combination multi-use pocket\nDickies FLEX fabric for comfort and ease of movement\nMoisture-wicking technology\nWrinkle-resistant fabric\nEasy-care stain-release finish",
+        "_id": "286b9ce2-b70c-476c-ad42-0c780f7aa237"
     }
 }
