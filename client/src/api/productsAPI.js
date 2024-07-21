@@ -2,7 +2,7 @@ import * as requester from "./requester";
 
 const BASE_URL = "http://localhost:3030/jsonstore/products";
 
-const GetAll = async () => {
+const getAll = async () => {
   const result = await requester.get(BASE_URL);
 
   const products = Object.values(result);
@@ -19,7 +19,7 @@ const create = async (productData) => {
 };
 
 const productsAPI = {
-  GetAll,
+  getAll,
   getOne,
   create,
 };
