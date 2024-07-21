@@ -15,7 +15,7 @@ function DetailsPage() {
     (async () => {
       const result = await productsAPI.getOne(productId);
       setProduct(result);
-      const commentsResult = await commentAPI.getAllComments();
+      const commentsResult = await commentAPI.getAllComments(productId);
       setComments(commentsResult);
     })();
   }, [productId]);
