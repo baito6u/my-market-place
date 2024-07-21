@@ -23,6 +23,19 @@ function DetailsPage() {
       <p>Price: ${product.price}</p>
       <img src={product.imageUrl} />
       <p>Description: {product.description}</p>
+
+      <div className={styles.comments}>
+        <h3>Comments</h3>
+        <form className={styles.commentForm}>
+          <label htmlFor="user">User:</label>
+          <input type="text" id="user" name="user" placeholder="Enter your name..." />
+
+          <label htmlFor="comment">Comment:</label>
+          <textarea id="comment" name="comment" placeholder="Enter your comment..." />
+
+          <button type="submit" className={styles.btn}>Submit</button>
+        </form>
+      </div>
     </div>
   );
 }
