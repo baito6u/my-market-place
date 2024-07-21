@@ -10,7 +10,7 @@ function CatalogPage() {
 
   useEffect(() => {
     productsAPI
-      .GetAll()
+      .getAll()
       .then((result) => setProducts(result))
       .catch((err) => {
         console.log(err);
