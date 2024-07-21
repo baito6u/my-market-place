@@ -31,6 +31,7 @@ function DetailsPage() {
       formData.get("comment")
     );
 
+    setComments(oldState => [...oldState, newComment])
     console.log(newComment);
   };
 
@@ -45,8 +46,8 @@ function DetailsPage() {
       <div className={styles.comments}>
         <h3>Comments</h3>
         <ul>
-          {comments.map(({username, comment}) => (
-            <li key={productId} className={styles.comment}>
+          {comments.map(({_id ,username, comment}) => (
+            <li key={_id} className={styles.comment}>
               <p>
                 <strong>{username}</strong>: {comment}
               </p>
