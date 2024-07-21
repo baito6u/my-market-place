@@ -4,17 +4,35 @@ import { useParams } from "react-router-dom";
 import styles from "./DetailsPage.module.css";
 
 import productsAPI from "../../api/productsAPI";
+import commentAPI from "../../api/commentAPI";
 
 function DetailsPage() {
   const [product, setProduct] = useState({});
-  const {productId} = useParams();
+  const [comments, setComments] = useState([]);
+  const { productId } = useParams();
 
   useEffect(() => {
     (async () => {
       const result = await productsAPI.getOne(productId);
       setProduct(result);
+      const commentsResult = await productsAPI.getComments(productId); // Assuming this method exists
+      setComments(commentsResult);
     })();
   });
+
+  const addCommentHandler = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+
+    const newComment = await commentAPI.create(
+      productId,
+      formData.get("username"),
+      formData.get("comment")
+    );
+
+    console.log(newComment);
+  };
 
   return (
     <div className={styles.details}>
@@ -26,14 +44,36 @@ function DetailsPage() {
 
       <div className={styles.comments}>
         <h3>Comments</h3>
-        <form className={styles.commentForm}>
-          <label htmlFor="user">User:</label>
-          <input type="text" id="user" name="user" placeholder="Enter your name..." />
+        {comments.length > 0 ? (
+          comments.map((comment, index) => (
+            <div key={index} className={styles.comment}>
+              <p>
+                <strong>{comment.user}</strong>: {comment.text}
+              </p>
+            </div>
+          ))
+        ) : (
+          <p>There are no comments added yet!</p>
+        )}
+        <form className={styles.commentForm} onSubmit={addCommentHandler}>
+          <label htmlFor="username">Username:</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Enter your name..."
+          />
 
           <label htmlFor="comment">Comment:</label>
-          <textarea id="comment" name="comment" placeholder="Enter your comment..." />
+          <textarea
+            id="comment"
+            name="comment"
+            placeholder="Enter your comment..."
+          />
 
-          <button type="submit" className={styles.btn}>Submit</button>
+          <button type="submit" className={styles.btn}>
+            Submit
+          </button>
         </form>
       </div>
     </div>
