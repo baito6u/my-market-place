@@ -1,4 +1,5 @@
-import {Routes, Route} from "react-router-dom"
+import { Routes, Route } from "react-router-dom";
+import { useState } from "react";
 
 import Navigation from "./components/navigation/Navigation";
 import HomePage from "./components/home/HomePage";
@@ -11,19 +12,25 @@ import CreateProduct from "./components/create/CreateProduct";
 import DetailsPage from "./components/details/DetailsPage";
 
 function App() {
+  const [auth, setAuth] = useState({});
+
+  const loginSubmitHandler = (values) => {
+    console.log(values);
+  };
+
   return (
     <div className="wrapper">
       <Navigation />
 
       <main className="box">
         <Routes>
-          <Route path="/" element={<HomePage />}/>
-          <Route path="/catalog" element={<CatalogPage />}/>
-          <Route path="/catalog/:productId/details" element={<DetailsPage />}/>
-          <Route path="/create" element={<CreateProduct />}/>
-          <Route path="/login" element={<LoginPage />}/>
-          <Route path="/register" element={<RegisterPage />}/>
-          <Route path="/cart" element={<MyCartPage />}/>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/catalog" element={<CatalogPage />} />
+          <Route path="/catalog/:productId/details" element={<DetailsPage />} />
+          <Route path="/create" element={<CreateProduct />} />
+          <Route path="/login" element={<LoginPage loginSubmitHandler={loginSubmitHandler}/>} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/cart" element={<MyCartPage />} />
         </Routes>
       </main>
 
