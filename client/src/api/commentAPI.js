@@ -2,11 +2,11 @@ import * as requester from "./requester";
 
 const BASE_URL = "http://localhost:3030/jsonstore/comments";
 
-const create = async (gameId, username, text) => {
+const create = async (productId, username, comment) => {
   const newComment = await requester.post(BASE_URL, {
-    gameId,
+    productId,
     username,
-    text,
+    comment,
   });
 
   return newComment;
