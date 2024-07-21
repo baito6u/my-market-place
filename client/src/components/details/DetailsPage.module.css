@@ -23,7 +23,7 @@ label {
 
 input[type="text"],
 textarea {
-  width: 100%;
+  width: 50%;
   padding: 10px;
   margin-bottom: 15px;
   border: 1px solid #ccc;
@@ -35,6 +35,7 @@ textarea {
 }
 
 .btn {
+  width: 50%;
   padding: 10px 15px;
   background-color: #007bff;
   color: white;
