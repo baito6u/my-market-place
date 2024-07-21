@@ -26,8 +26,22 @@ function App() {
     navigate("/");
   };
 
+  const registerSubmitHandler = async (values) => {
+    console.log(values);
+    const result = await authAPI.register(
+      values.username,
+      values.email,
+      values.password
+    );
+
+    setAuth(result);
+
+    navigate("/login");
+  };
+
   const values = {
     loginSubmitHandler,
+    registerSubmitHandler,
     username: auth.username,
     email: auth.email,
     isAuthenticated: !!auth.email,
