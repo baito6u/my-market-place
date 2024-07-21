@@ -15,10 +15,10 @@ function DetailsPage() {
     (async () => {
       const result = await productsAPI.getOne(productId);
       setProduct(result);
-      const commentsResult = await productsAPI.getComments(productId); // Assuming this method exists
+      const commentsResult = await commentAPI.getAllComments();
       setComments(commentsResult);
     })();
-  });
+  }, [productId]);
 
   const addCommentHandler = async (e) => {
     e.preventDefault();
@@ -44,17 +44,21 @@ function DetailsPage() {
 
       <div className={styles.comments}>
         <h3>Comments</h3>
-        {comments.length > 0 ? (
-          comments.map((comment, index) => (
-            <div key={index} className={styles.comment}>
+        <ul>
+          {comments.map(({username, comment}) => (
+            <li key={productId} className={styles.comment}>
               <p>
-                <strong>{comment.user}</strong>: {comment.text}
+                <strong>{username}</strong>: {comment}
               </p>
-            </div>
-          ))
-        ) : (
-          <p>There are no comments added yet!</p>
+            </li>
+          ))}
+        </ul>
+
+        {comments.length === 0 && (
+          <p className="no-comment">Ther are no comments added yet!</p>
         )}
+      </div>
+
         <form className={styles.commentForm} onSubmit={addCommentHandler}>
           <label htmlFor="username">Username:</label>
           <input
@@ -76,7 +80,6 @@ function DetailsPage() {
           </button>
         </form>
       </div>
-    </div>
   );
 }
 
