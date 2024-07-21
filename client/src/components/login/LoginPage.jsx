@@ -20,7 +20,7 @@ function LoginPage() {
   return (
     <div className={styles.login}>
       <h2>Login</h2>
-      <form onSubmit={onSubmit}>
+      <form id="login" onSubmit={onSubmit}>
         <div className={styles.formGroup}>
           <label htmlFor="email">Email:</label>
           <input
@@ -44,7 +44,7 @@ function LoginPage() {
         <button type="submit">Login</button>
         <p className="field">
           <span>
-            If you don't have profile click <a href="#">here</a>
+            If you don't have profile click <a href="/register">here</a>
           </span>
         </p>
       </form>
