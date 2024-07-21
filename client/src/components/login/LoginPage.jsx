@@ -3,10 +3,17 @@ import useForm from "../../hooks/useForm";
 
 import styles from "./LoginPage.module.css";
 
-function LoginPage() {
-  const { values, onChange, onSubmit } = useForm({
-    email: "",
-    password: "",
+const LoginFormKeys = {
+  Email: "email",
+  Password: "password";
+}
+
+function LoginPage({
+  loginSubmitHandler,
+}) {
+  const { values, onChange, onSubmit } = useForm(loginSubmitHandler, {
+    [LoginFormKeys.Email]: "",
+    [LoginFormKeys.Password]: "",
   });
 
   return (
@@ -18,9 +25,9 @@ function LoginPage() {
           <input 
           type="email" 
           id="email" 
-          name="email" 
+          name={LoginFormKeys.Email} 
           onChange={onChange} 
-          value={values.email}
+          value={values.[LoginFormKeys.Email]}
           />
 
         </div>
@@ -30,9 +37,9 @@ function LoginPage() {
           va
             type="password"
             id="password"
-            name="password"
+            name={LoginFormKeys.Password}
             onChange={onChange}
-            value={values.password}
+            value={values[LoginFormKeys.Password]}
           />
         </div>
         <button type="submit">Login</button>
