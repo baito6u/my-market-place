@@ -12,7 +12,7 @@ function Navigation() {
     <nav className={styles.nav}>
       <ul>
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/">My Market Place</Link>
         </li>
         <li>
           <Link to="/catalog">Catalog</Link>
