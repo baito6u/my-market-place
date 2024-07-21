@@ -10,6 +10,7 @@ import CatalogPage from "./components/catalog/CatalogPage";
 import MyCartPage from "./components/myCart/MyCartPage";
 import CreateProduct from "./components/create/CreateProduct";
 import DetailsPage from "./components/details/DetailsPage";
+import AuthContext from "./contexts/authContext";
 
 function App() {
   const [auth, setAuth] = useState({});
@@ -19,23 +20,25 @@ function App() {
   };
 
   return (
-    <div className="wrapper">
-      <Navigation />
+    <AuthContext.Provider value={loginSubmitHandler}>
+      <div className="wrapper">
+        <Navigation />
 
-      <main className="box">
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/catalog" element={<CatalogPage />} />
-          <Route path="/catalog/:productId/details" element={<DetailsPage />} />
-          <Route path="/create" element={<CreateProduct />} />
-          <Route path="/login" element={<LoginPage loginSubmitHandler={loginSubmitHandler}/>} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/cart" element={<MyCartPage />} />
-        </Routes>
-      </main>
+        <main className="box">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/catalog" element={<CatalogPage />} />
+            <Route path="/catalog/:productId/details" element={<DetailsPage />}/>
+            <Route path="/create" element={<CreateProduct />} />
+            <Route path="/login" element={<LoginPage />}/>
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/cart" element={<MyCartPage />} />
+          </Routes>
+        </main>
 
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </AuthContext.Provider>
   );
 }
 

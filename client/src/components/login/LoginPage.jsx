@@ -1,16 +1,17 @@
-import React from "react";
-import useForm from "../../hooks/useForm";
+import { useContext } from "react";
 
 import styles from "./LoginPage.module.css";
 
+import useForm from "../../hooks/useForm";
+import AuthContext from "../../contexts/authContext";
+
 const LoginFormKeys = {
   Email: "email",
-  Password: "password";
+  Password: "password"
 }
 
-function LoginPage({
-  loginSubmitHandler,
-}) {
+function LoginPage() {
+  const {loginSubmitHandler} = useContext(AuthContext)
   const { values, onChange, onSubmit } = useForm(loginSubmitHandler, {
     [LoginFormKeys.Email]: "",
     [LoginFormKeys.Password]: "",
@@ -27,7 +28,7 @@ function LoginPage({
           id="email" 
           name={LoginFormKeys.Email} 
           onChange={onChange} 
-          value={values.[LoginFormKeys.Email]}
+          value={values[LoginFormKeys.Email]}
           />
 
         </div>
