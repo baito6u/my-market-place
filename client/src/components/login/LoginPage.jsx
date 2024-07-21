@@ -7,11 +7,11 @@ import AuthContext from "../../contexts/authContext";
 
 const LoginFormKeys = {
   Email: "email",
-  Password: "password"
-}
+  Password: "password",
+};
 
 function LoginPage() {
-  const {loginSubmitHandler} = useContext(AuthContext)
+  const { loginSubmitHandler } = useContext(AuthContext);
   const { values, onChange, onSubmit } = useForm(loginSubmitHandler, {
     [LoginFormKeys.Email]: "",
     [LoginFormKeys.Password]: "",
@@ -23,27 +23,30 @@ function LoginPage() {
       <form onSubmit={onSubmit}>
         <div className={styles.formGroup}>
           <label htmlFor="email">Email:</label>
-          <input 
-          type="email" 
-          id="email" 
-          name={LoginFormKeys.Email} 
-          onChange={onChange} 
-          value={values[LoginFormKeys.Email]}
+          <input
+            type="email"
+            id="email"
+            name="email"
+            onChange={onChange}
+            value={values[LoginFormKeys.Email]}
           />
-
         </div>
         <div className={styles.formGroup}>
           <label htmlFor="password">Password:</label>
           <input
-          va
             type="password"
             id="password"
-            name={LoginFormKeys.Password}
+            name="password"
             onChange={onChange}
             value={values[LoginFormKeys.Password]}
           />
         </div>
         <button type="submit">Login</button>
+        <p className="field">
+          <span>
+            If you don't have profile click <a href="#">here</a>
+          </span>
+        </p>
       </form>
     </div>
   );

@@ -1,5 +1,8 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { useState } from "react";
+
+import * as authAPI from "./api/authAPI";
+import AuthContext from "./contexts/authContext";
 
 import Navigation from "./components/navigation/Navigation";
 import HomePage from "./components/home/HomePage";
@@ -10,17 +13,21 @@ import CatalogPage from "./components/catalog/CatalogPage";
 import MyCartPage from "./components/myCart/MyCartPage";
 import CreateProduct from "./components/create/CreateProduct";
 import DetailsPage from "./components/details/DetailsPage";
-import AuthContext from "./contexts/authContext";
 
 function App() {
+  const navigate = useNavigate();
   const [auth, setAuth] = useState({});
 
-  const loginSubmitHandler = (values) => {
-    console.log(values);
+  const loginSubmitHandler = async (values) => {
+    const result = await authAPI.login(values.email, values.password);
+
+    setAuth(result);
+
+    navigate("/");
   };
 
   return (
-    <AuthContext.Provider value={loginSubmitHandler}>
+    <AuthContext.Provider value={{ loginSubmitHandler }}>
       <div className="wrapper">
         <Navigation />
 
@@ -28,9 +35,12 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/catalog" element={<CatalogPage />} />
-            <Route path="/catalog/:productId/details" element={<DetailsPage />}/>
+            <Route
+              path="/catalog/:productId/details"
+              element={<DetailsPage />}
+            />
             <Route path="/create" element={<CreateProduct />} />
-            <Route path="/login" element={<LoginPage />}/>
+            <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/cart" element={<MyCartPage />} />
           </Routes>
