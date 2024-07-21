@@ -9,7 +9,7 @@ function HomePage() {
   useEffect(() => {
     (async () => {
       // TODO: modify to fetch latest 3 products
-      const result = await productsAPI.GetAll();
+      const result = await productsAPI.getAll();
 
       SetlatestProducts(result.reverse().slice(0, 3));
     })();
