@@ -1,24 +1,44 @@
-import React from 'react';
-import styles from './RegisterPage.module.css';
+import { useContext } from "react";
+import styles from "./RegisterPage.module.css";
+import AuthContext from "../../contexts/authContext";
+import useForm from "../../hooks/useForm";
+
+const RegisterFormKeys = {
+  Email: "email",
+  Password: "password",
+  Repass: "repass"
+};
 
 function RegisterPage() {
+  const { registerSubmitHandler } = useContext(AuthContext);
+  const {values, onChange, onSubmit} = useForm(registerSubmitHandler, {
+    [RegisterFormKeys.Email]: "",
+    [RegisterFormKeys.Password]: "",
+    [RegisterFormKeys.Repass]: "",
+  });
+
   return (
     <div className={styles.register}>
       <h2>Register</h2>
-      <form>
+      <form id="register" onSubmit={onSubmit}>
         <div className={styles.formGroup}>
-          <label>Email:</label>
-          <input type="email" />
+          <label htmlFor="email">Email:</label>
+          <input type="email" id="email" name="email" onChange={onChange} value={values[RegisterFormKeys.Email]}/>
         </div>
         <div className={styles.formGroup}>
-          <label>Password:</label>
-          <input type="password" />
+          <label htmlFor="password">Password:</label>
+          <input type="password" id="password" name="password" onChange={onChange} value={values[RegisterFormKeys.Password]}/>
         </div>
         <div className={styles.formGroup}>
-          <label>Confirm Password:</label>
-          <input type="password" />
+          <label htmlFor="password">Confirm Password:</label>
+          <input type="password" id="repass" name="repass" onChange={onChange} value={values[RegisterFormKeys.Repass]}/>
         </div>
         <button type="submit">Register</button>
+        <p className="field">
+          <span>
+            If you already have profile click <a href="/login">here</a>
+          </span>
+        </p>
       </form>
     </div>
   );
