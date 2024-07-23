@@ -20,3 +20,5 @@ export const register = (username, email, password) => {
 
   return result;
 };
+
+export const logout = () => requester.get(`${BASE_URL}/logout`);

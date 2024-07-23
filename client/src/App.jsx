@@ -13,15 +13,21 @@ import CatalogPage from "./components/catalog/CatalogPage";
 import MyCartPage from "./components/myCart/MyCartPage";
 import CreateProduct from "./components/create/CreateProduct";
 import DetailsPage from "./components/details/DetailsPage";
+import LogoutPage from "./components/logout/LogoutPage";
 
 function App() {
   const navigate = useNavigate();
-  const [auth, setAuth] = useState({});
+  const [auth, setAuth] = useState(() => {
+    localStorage.removeItem("accessToken");
+
+    return {};
+  });
 
   const loginSubmitHandler = async (values) => {
     const result = await authAPI.login(values.email, values.password);
 
     setAuth(result);
+    localStorage.setItem("accessToken", result.accessToken);
 
     navigate("/");
   };
@@ -35,16 +41,23 @@ function App() {
     );
 
     setAuth(result);
+    localStorage.setItem("accessToken", result.accessToken);
 
     navigate("/login");
+  };
+
+  const logoutHandler = () => {
+    setAuth({});
+    localStorage.removeItem("accessToken");
   };
 
   const values = {
     loginSubmitHandler,
     registerSubmitHandler,
+    logoutHandler,
     username: auth.username,
     email: auth.email,
-    isAuthenticated: !!auth.email,
+    isAuthenticated: !!auth.accessToken,
   };
 
   return (
@@ -64,6 +77,7 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/cart" element={<MyCartPage />} />
+            <Route path="/logout" element={<LogoutPage />} />
           </Routes>
         </main>
 
