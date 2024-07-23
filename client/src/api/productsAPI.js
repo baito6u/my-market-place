@@ -5,8 +5,7 @@ const BASE_URL = "http://localhost:3030/data/products";
 const getAll = async () => {
   const result = await requester.get(BASE_URL);
 
-
-  return products;
+  return result;
 };
 
 const getOne = (productId) => requester.get(`${BASE_URL}/${productId}`);

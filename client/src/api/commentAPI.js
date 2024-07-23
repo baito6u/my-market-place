@@ -1,15 +1,14 @@
 import * as requester from "./requester";
 
-const BASE_URL = "http://localhost:3030/jsonstore/comments";
+const BASE_URL = "http://localhost:3030/data/comments";
 
 const getAllComments = async (productId) => {
     const query = new URLSearchParams({
         where: `productId="${productId}"`
     })
-  const result = await requester.get(`${BASE_URL}?${query}`);
+  const result = await requester.get(`${BASE_URL}`);
 
-//   TODDO: temp solution before migration to collections service
-  return Object.values(result).filter(comment => comment.productId === productId);
+  return result.filter(comment => comment.productId === productId);
 
 };
 
