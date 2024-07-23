@@ -6,9 +6,9 @@ const getAllComments = async (productId) => {
     const query = new URLSearchParams({
         where: `productId="${productId}"`
     })
-  const result = await requester.get(`${BASE_URL}`);
+  const result = await requester.get(`${BASE_URL}?${query}`);
 
-  return result.filter(comment => comment.productId === productId);
+  return result;
 
 };
 
