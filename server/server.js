@@ -1339,6 +1339,48 @@
     	}
     };
     var seedData = {
+        products: {
+            "8c472bb0-2d6b-4a51-a290-e8a78be85202": {
+        "title": "Bag",
+        "category": "Bags",
+        "price": "50",
+        "imageUrl": "https://th.bing.com/th/id/OIP.l_eDx3E9b5ic9L1W94lbhQHaFW?w=258&h=186&c=7&r=0&o=5&pid=1.7",
+        "description": "Man lather bag for laptop",
+        "_id": "8c472bb0-2d6b-4a51-a290-e8a78be85202"
+    },
+    "6f4a19c7-0d88-476c-8fd8-97671ab335fe": {
+        "title": "Shoes",
+        "category": "Shoes",
+        "price": "100",
+        "imageUrl": "https://th.bing.com/th/id/OIP.YWLqzwgxHxFZSlDSM1uMtAAAAA?w=176&h=181&c=7&r=0&o=5&pid=1.7",
+        "description": "Man's black lather shoes Happy Gentleman",
+        "_id": "6f4a19c7-0d88-476c-8fd8-97671ab335fe"
+    },
+    "cb5ef803-b502-4b33-9dc8-0520c6047774": {
+        "title": "Dress",
+        "category": "Dress",
+        "price": "70",
+        "imageUrl": "https://th.bing.com/th/id/OIP.8B4d56wUuLWwavQsEWLLZQHaJ4?w=184&h=245&c=7&r=0&o=5&pid=1.7",
+        "description": "Two Pieces Red Prom Dress,Tulle Off Shoulder Evening Dresses",
+        "_id": "cb5ef803-b502-4b33-9dc8-0520c6047774"
+    },
+    "66055ddd-d451-42ab-9a6a-daaff74aa0c3": {
+        "title": "Sun glasses ",
+        "category": "glasses",
+        "price": "200",
+        "imageUrl": "https://sites.psu.edu/siowfa16/files/2016/11/fashion-glasses-1pyhxci.png",
+        "description": " These glasses are ideal for ladies and gentlemen who spend (a lot of) time in front of their screens.",
+        "_id": "66055ddd-d451-42ab-9a6a-daaff74aa0c3"
+    },
+    "286b9ce2-b70c-476c-ad42-0c780f7aa237": {
+        "title": "Mans pants",
+        "category": "pants",
+        "price": "30",
+        "imageUrl": "https://oldnavy.gap.com/webcontent/0019/840/895/cn19840895.jpg",
+        "description": "Combination multi-use pocket Dickies FLEX fabric for comfort and ease of movement Moisture-wicking technology Wrinkle-resistant fabric Easy-care stain-release finish",
+        "_id": "286b9ce2-b70c-476c-ad42-0c780f7aa237"
+    }
+        },
     	recipes: {
     		"3987279d-0ad4-4afb-8ca9-5b256ae3b298": {
     			_ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
