@@ -1,8 +1,6 @@
-import { Routes, Route, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
 
-import * as authAPI from "./api/authAPI";
-import {AuthProvider} from "./contexts/authContext";
+import { AuthProvider } from "./contexts/authContext";
 
 import Navigation from "./components/navigation/Navigation";
 import HomePage from "./components/home/HomePage";
@@ -16,52 +14,8 @@ import DetailsPage from "./components/details/DetailsPage";
 import LogoutPage from "./components/logout/LogoutPage";
 
 function App() {
-  const navigate = useNavigate();
-  const [auth, setAuth] = useState(() => {
-    localStorage.removeItem("accessToken");
-
-    return {};
-  });
-
-  const loginSubmitHandler = async (values) => {
-    const result = await authAPI.login(values.email, values.password);
-
-    setAuth(result);
-    localStorage.setItem("accessToken", result.accessToken);
-
-    navigate("/");
-  };
-
-  const registerSubmitHandler = async (values) => {
-    console.log(values);
-    const result = await authAPI.register(
-      values.username,
-      values.email,
-      values.password
-    );
-
-    setAuth(result);
-    localStorage.setItem("accessToken", result.accessToken);
-
-    navigate("/login");
-  };
-
-  const logoutHandler = () => {
-    setAuth({});
-    localStorage.removeItem("accessToken");
-  };
-
-  const values = {
-    loginSubmitHandler,
-    registerSubmitHandler,
-    logoutHandler,
-    username: auth.username,
-    email: auth.email,
-    isAuthenticated: !!auth.accessToken,
-  };
-
   return (
-    <AuthProvider value={values}>
+    <AuthProvider>
       <div className="wrapper">
         <Navigation />
 
