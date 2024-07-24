@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import styles from "./DetailsPage.module.css";
 
 import productsAPI from "../../api/productsAPI";
 import commentAPI from "../../api/commentAPI";
+import AuthContext from "../../contexts/authContext";
 
 function DetailsPage() {
+  const { username } = useContext(AuthContext);
   const [product, setProduct] = useState({});
   const [comments, setComments] = useState([]);
   const { productId } = useParams();
@@ -27,12 +29,13 @@ function DetailsPage() {
 
     const newComment = await commentAPI.create(
       productId,
-      formData.get("username"),
       formData.get("comment")
     );
 
-    setComments(oldState => [...oldState, newComment])
-    console.log(newComment);
+    setComments(oldState => [
+      ...oldState,
+      { ...newComment, author: { username } },
+    ]);
   };
 
   return (
@@ -46,7 +49,7 @@ function DetailsPage() {
       <div className={styles.comments}>
         <h3>Comments</h3>
         <ul>
-          {comments.map(({_id ,username, comment}) => (
+          {comments.map(({ _id, comment, owner: { username } }) => (
             <li key={_id} className={styles.comment}>
               <p>
                 <strong>{username}</strong>: {comment}
@@ -60,27 +63,19 @@ function DetailsPage() {
         )}
       </div>
 
-        <form className={styles.commentForm} onSubmit={addCommentHandler}>
-          <label htmlFor="username">Username:</label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            placeholder="Enter your name..."
-          />
+      <form className={styles.commentForm} onSubmit={addCommentHandler}>
+        <label htmlFor="comment">Comment:</label>
+        <textarea
+          id="comment"
+          name="comment"
+          placeholder="Enter your comment..."
+        />
 
-          <label htmlFor="comment">Comment:</label>
-          <textarea
-            id="comment"
-            name="comment"
-            placeholder="Enter your comment..."
-          />
-
-          <button type="submit" className={styles.btn}>
-            Submit
-          </button>
-        </form>
-      </div>
+        <button type="submit" className={styles.btn}>
+          Submit
+        </button>
+      </form>
+    </div>
   );
 }
 

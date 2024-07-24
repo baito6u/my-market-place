@@ -4,7 +4,8 @@ const BASE_URL = "http://localhost:3030/data/comments";
 
 const getAllComments = async (productId) => {
     const query = new URLSearchParams({
-        where: `productId="${productId}"`
+        where: `productId="${productId}"`,
+        load: `owner=_ownerId:users`,
     })
   const result = await requester.get(`${BASE_URL}?${query}`);
 
@@ -12,10 +13,9 @@ const getAllComments = async (productId) => {
 
 };
 
-const create = async (productId, username, comment) => {
+const create = async (productId, comment) => {
   const newComment = await requester.post(BASE_URL, {
     productId,
-    username,
     comment,
   });
 
