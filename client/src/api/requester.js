@@ -1,12 +1,13 @@
-const bildOption = (data) => {
+const buildOptions = (data) => {
   const options = {};
-  
+
   if (data) {
     options.body = JSON.stringify(data);
     options.headers = {
-        'content-type': 'application/json'
+      "content-type": "application/json",
     };
-}
+  }
+
   const token = localStorage.getItem("accessToken");
 
   if (token) {
@@ -19,9 +20,9 @@ const bildOption = (data) => {
   return options;
 };
 
-async function requester(method, url, data) {
+const requester = async (method, url, data) => {
   const response = await fetch(url, {
-    ...bildOption(data),
+    ...buildOptions(data),
     method,
   });
 
