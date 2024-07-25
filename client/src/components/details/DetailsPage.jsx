@@ -9,7 +9,7 @@ import AuthContext from "../../contexts/authContext";
 import useForm from "../../hooks/useForm";
 
 function DetailsPage() {
-  const { username } = useContext(AuthContext);
+  const { username, userId } = useContext(AuthContext);
   const [product, setProduct] = useState({});
   const [comments, setComments] = useState([]);
   const { productId } = useParams();
@@ -40,6 +40,8 @@ function DetailsPage() {
     comment: "",
   });
 
+  const isOwner = userId === product._ownerId;
+
   return (
     <div className={styles.details}>
       <h2>Title: {product.title}</h2>
@@ -64,9 +66,16 @@ function DetailsPage() {
           <p className="no-comment">Ther are no comments added yet!</p>
         )}
       </div>
+        {/* Only for creator of the product */}
+      {isOwner && (
+      <div className="buttons">
+        <a href="#" className="button">Edit</a>
+        <a href="#" className="button">Delete</a>
+      </div>
+      )}
 
       <form className={styles.commentForm} onSubmit={onSubmit}>
-        <label htmlFor="comment">Comment:</label>
+        <label htmlFor="comment">Add Comment:</label>
         <textarea
           id="comment"
           name="comment"
