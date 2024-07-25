@@ -32,9 +32,9 @@ function DetailsPage() {
       formData.get("comment")
     );
 
-    setComments(oldState => [
-      ...oldState,
-      { ...newComment, author: { username } },
+    setComments(state => [
+      ...state,
+      { ...newComment, owner: { username } },
     ]);
   };
 
