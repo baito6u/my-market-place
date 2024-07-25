@@ -1,19 +1,14 @@
-import { createContext, useState } from "react";
+import { createContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 import * as authAPI from "../api/authAPI";
+import usePersistedState from "../hooks/usePersistedState";
 
 const AuthContext = createContext();
 
-export const AuthProvider = ({
-    children,
-}) => {
-    const navigate = useNavigate();
-  const [auth, setAuth] = useState(() => {
-    localStorage.removeItem("accessToken");
-
-    return {};
-  });
+export const AuthProvider = ({ children }) => {
+  const navigate = useNavigate();
+  const [auth, setAuth] = usePersistedState("auth", {});
 
   const loginSubmitHandler = async (values) => {
     const result = await authAPI.login(values.email, values.password);
@@ -25,7 +20,6 @@ export const AuthProvider = ({
   };
 
   const registerSubmitHandler = async (values) => {
-    console.log(values);
     const result = await authAPI.register(
       values.username,
       values.email,
@@ -33,6 +27,7 @@ export const AuthProvider = ({
     );
 
     setAuth(result);
+    
     localStorage.setItem("accessToken", result.accessToken);
 
     navigate("/login");
@@ -40,6 +35,7 @@ export const AuthProvider = ({
 
   const logoutHandler = () => {
     setAuth({});
+
     localStorage.removeItem("accessToken");
   };
 
@@ -47,16 +43,19 @@ export const AuthProvider = ({
     loginSubmitHandler,
     registerSubmitHandler,
     logoutHandler,
-    username: auth.username,
+    username: auth.username || auth.email,
     email: auth.email,
+    userId: auth._id,
     isAuthenticated: !!auth.accessToken,
   };
-    
-    return (
-        <AuthContext.Provider value={values}>
-            {children}
-        </AuthContext.Provider>
-    )
-}
+
+  return (
+    <AuthContext.Provider value={values}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
+
+AuthContext.displayName = 'AuthContext';
 
 export default AuthContext;
