@@ -6,6 +6,7 @@ import styles from "./DetailsPage.module.css";
 import productsAPI from "../../api/productsAPI";
 import commentAPI from "../../api/commentAPI";
 import AuthContext from "../../contexts/authContext";
+import useForm from "../../hooks/useForm";
 
 function DetailsPage() {
   const { username } = useContext(AuthContext);
@@ -22,14 +23,11 @@ function DetailsPage() {
     })();
   }, [productId]);
 
-  const addCommentHandler = async (e) => {
-    e.preventDefault();
-
-    const formData = new FormData(e.currentTarget);
+  const addCommentHandler = async (values) => {
 
     const newComment = await commentAPI.create(
       productId,
-      formData.get("comment")
+      values.comment,
     );
 
     setComments(state => [
@@ -37,6 +35,10 @@ function DetailsPage() {
       { ...newComment, owner: { username } },
     ]);
   };
+
+  const {values, onChange, onSubmit} = useForm(addCommentHandler, {
+    comment: "",
+  });
 
   return (
     <div className={styles.details}>
@@ -63,11 +65,13 @@ function DetailsPage() {
         )}
       </div>
 
-      <form className={styles.commentForm} onSubmit={addCommentHandler}>
+      <form className={styles.commentForm} onSubmit={onSubmit}>
         <label htmlFor="comment">Comment:</label>
         <textarea
           id="comment"
           name="comment"
+          value={values.comment}
+          onChange={onChange}
           placeholder="Enter your comment..."
         />
 
