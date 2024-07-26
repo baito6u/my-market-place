@@ -16,10 +16,17 @@ const create = async (productData) => {
   return result;
 };
 
+const edit = async (productId, productData) => {
+  const result = await requester.put(`${BASE_URL}/${productId}`, productData);
+
+  return result;
+};
+
 const productsAPI = {
   getAll,
   getOne,
   create,
+  edit,
 };
 
 export default productsAPI;
