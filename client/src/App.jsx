@@ -13,30 +13,39 @@ import CreateProduct from "./components/create/CreateProduct";
 import DetailsPage from "./components/details/DetailsPage";
 import LogoutPage from "./components/logout/LogoutPage";
 import EditProductPage from "./components/edit/EditProductPage";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 function App() {
   return (
-    <AuthProvider>
-      <div className="wrapper">
-        <Navigation />
+    <ErrorBoundary>
+      <AuthProvider>
+        <div className="wrapper">
+          <Navigation />
 
-        <main className="box">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/catalog" element={<CatalogPage />} />
-            <Route path="/catalog/:productId/details" element={<DetailsPage />}/>
-            <Route path="/catalog/:productId/edit" element={<EditProductPage />}/>
-            <Route path="/create" element={<CreateProduct />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/cart" element={<MyCartPage />} />
-            <Route path="/logout" element={<LogoutPage />} />
-          </Routes>
-        </main>
+          <main className="box">
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/catalog" element={<CatalogPage />} />
+              <Route
+                path="/catalog/:productId/details"
+                element={<DetailsPage />}
+              />
+              <Route
+                path="/catalog/:productId/edit"
+                element={<EditProductPage />}
+              />
+              <Route path="/create" element={<CreateProduct />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/register" element={<RegisterPage />} />
+              <Route path="/cart" element={<MyCartPage />} />
+              <Route path="/logout" element={<LogoutPage />} />
+            </Routes>
+          </main>
 
-        <Footer />
-      </div>
-    </AuthProvider>
+          <Footer />
+        </div>
+      </AuthProvider>
+    </ErrorBoundary>
   );
 }
 
