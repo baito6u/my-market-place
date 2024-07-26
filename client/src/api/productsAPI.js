@@ -22,11 +22,14 @@ const edit = async (productId, productData) => {
   return result;
 };
 
+const remove = async (productId) => requester.del(`${BASE_URL}/${productId}`);
+
 const productsAPI = {
   getAll,
   getOne,
   create,
   edit,
+  remove,
 };
 
 export default productsAPI;

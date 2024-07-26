@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 import styles from "./DetailsPage.module.css";
 
@@ -9,6 +9,7 @@ import AuthContext from "../../contexts/authContext";
 import useForm from "../../hooks/useForm";
 
 function DetailsPage() {
+  const navigate = useNavigate();
   const { username, userId } = useContext(AuthContext);
   const [product, setProduct] = useState({});
   const [comments, setComments] = useState([]);
@@ -36,11 +37,23 @@ function DetailsPage() {
     ]);
   };
 
+  const deleteButtonClickHandler = async () => {
+    const hasConfirmed = confirm(`Are you sure you want to delete ${product.title}`);
+
+    if (hasConfirmed) {
+        await productsAPI.remove(productId);
+
+        navigate('/catalog');
+    }
+}
+
   const {values, onChange, onSubmit} = useForm(addCommentHandler, {
     comment: "",
   });
 
   const isOwner = userId === product._ownerId;
+
+
 
   return (
     <div className={styles.details}>
@@ -70,7 +83,7 @@ function DetailsPage() {
       {isOwner && (
       <div className="buttons">
         <Link to={`/catalog/${productId}/edit`} className="button">Edit</Link>
-        <Link to="/catalog/:productId/delete" className="button">Delete</Link>
+        <button className="button" onClick={deleteButtonClickHandler}>Delete</button>
       </div>
       )}
 
