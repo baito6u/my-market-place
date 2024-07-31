@@ -23,6 +23,10 @@ export const AuthProvider = ({ children }) => {
   };
 
   const registerSubmitHandler = async (values) => {
+    if (password !== repass) {
+      return;
+    }
+    
     try {    
       const result = await authAPI.register(
         values.username,
