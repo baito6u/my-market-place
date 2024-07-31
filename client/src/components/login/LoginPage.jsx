@@ -1,7 +1,5 @@
-import { useContext } from "react";
-
+import { useContext, useState } from "react";
 import styles from "./LoginPage.module.css";
-
 import useForm from "../../hooks/useForm";
 import AuthContext from "../../contexts/authContext";
 
@@ -12,14 +10,26 @@ const LoginFormKeys = {
 
 function LoginPage() {
   const { loginSubmitHandler } = useContext(AuthContext);
-  const { values, onChange, onSubmit } = useForm(loginSubmitHandler, {
+  const [serverError, setServerError] = useState("");
+  const { values, onChange, onSubmit } = useForm(handleSubmit, {
     [LoginFormKeys.Email]: "",
     [LoginFormKeys.Password]: "",
   });
 
+  async function handleSubmit() {
+    setServerError(""); // Clear previous server error
+
+    try {
+      await loginSubmitHandler(values);
+    } catch (error) {
+      setServerError(error.message);
+    }
+  }
+
   return (
     <div className={styles.login}>
       <h2>Login</h2>
+      {serverError && <p className={styles.error}>{serverError}</p>}
       <form id="login" onSubmit={onSubmit}>
         <div className={styles.formGroup}>
           <label htmlFor="email">Email:</label>
