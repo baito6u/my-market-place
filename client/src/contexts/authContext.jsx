@@ -18,31 +18,26 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem("accessToken", result.accessToken);
       navigate("/");
     } catch (error) {
-      console.log(error.message);
+      throw new Error(error.message || "Login failed");
     }
   };
 
   const registerSubmitHandler = async (values) => {
-    if (password !== repass) {
-      return;
-    }
-    
-    try {    
+    try {
       const result = await authAPI.register(
         values.username,
         values.email,
         values.password
       );
-  
+
       setAuth(result);
-  
+
       localStorage.setItem("accessToken", result.accessToken);
-  
-      navigate("/login");
+
+      navigate("/");
     } catch (error) {
-      console.log(error.message);
+      throw new Error(error.message || "Registration failed");
     }
-    
   };
 
   const logoutHandler = () => {
