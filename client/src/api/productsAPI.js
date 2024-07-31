@@ -10,6 +10,18 @@ const getAll = async () => {
 
 const getOne = (productId) => requester.get(`${BASE_URL}/${productId}`);
 
+export const getLatest = async () => {
+  const query = new URLSearchParams({
+      //sortBy: `_createdOn desc`,
+      offset: 5,
+      pageSize: 3,
+  });
+
+  const result = await requester.get(`${BASE_URL}?${query}`);
+
+  return result;
+}
+
 const create = async (productData) => {
   const result = await requester.post(BASE_URL, productData);
 
@@ -27,6 +39,7 @@ const remove = async (productId) => requester.del(`${BASE_URL}/${productId}`);
 const productsAPI = {
   getAll,
   getOne,
+  getLatest,
   create,
   edit,
   remove,
