@@ -11,7 +11,11 @@ function CatalogPage() {
   useEffect(() => {
     productsAPI
       .getAll()
-      .then((result) => setProducts(result))
+      .then((result) => {
+        // Assuming each product has a '_createdOn' field
+        const sortedProducts = result.sort((a, b) => new Date(b._createdOn) - new Date(a._createdOn));
+        setProducts(sortedProducts);
+      })
       .catch((err) => {
         console.log(err);
       });
