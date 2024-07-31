@@ -11,26 +11,34 @@ export const AuthProvider = ({ children }) => {
   const [auth, setAuth] = usePersistedState("auth", {});
 
   const loginSubmitHandler = async (values) => {
-    const result = await authAPI.login(values.email, values.password);
+    try {
+      const result = await authAPI.login(values.email, values.password);
 
-    setAuth(result);
-    localStorage.setItem("accessToken", result.accessToken);
-
-    navigate("/");
+      setAuth(result);
+      localStorage.setItem("accessToken", result.accessToken);
+      navigate("/");
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   const registerSubmitHandler = async (values) => {
-    const result = await authAPI.register(
-      values.username,
-      values.email,
-      values.password
-    );
-
-    setAuth(result);
+    try {    
+      const result = await authAPI.register(
+        values.username,
+        values.email,
+        values.password
+      );
+  
+      setAuth(result);
+  
+      localStorage.setItem("accessToken", result.accessToken);
+  
+      navigate("/login");
+    } catch (error) {
+      console.log(error.message);
+    }
     
-    localStorage.setItem("accessToken", result.accessToken);
-
-    navigate("/login");
   };
 
   const logoutHandler = () => {
@@ -49,13 +57,9 @@ export const AuthProvider = ({ children }) => {
     isAuthenticated: !!auth.accessToken,
   };
 
-  return (
-    <AuthContext.Provider value={values}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
 };
 
-AuthContext.displayName = 'AuthContext';
+AuthContext.displayName = "AuthContext";
 
 export default AuthContext;
