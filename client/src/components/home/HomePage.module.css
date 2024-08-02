@@ -1,8 +1,52 @@
 .home {
-    text-align: center;
-    padding: 20px;
+  background-color: #aa8585;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: "Arial", sans-serif;
+  text-align: center;
+}
+
+.home h1 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.home p {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.home h3 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Use CSS Grid to create a responsive layout for latest products */
+.latestProductsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+/* Media query for small screens */
+@media (max-width: 768px) {
+  .home {
+    padding: 10px;
   }
 
- 
+  .home h1 {
+    font-size: 2rem;
+  }
 
-  
+  .home p {
+    font-size: 1rem;
+  }
+
+  .home h3 {
+    font-size: 1.5rem;
+  }
+}

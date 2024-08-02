@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./HomePage.module.css";
 import productsAPI from "../../api/productsAPI";
-import LatestProduct from "./latestProducts/LatestProduct";
+import Product from "../catalog/productItem/Product";
 
 function HomePage() {
   const [latestProducts, setLatestProducts] = useState([]);
@@ -26,9 +26,11 @@ function HomePage() {
       <p>Explore our products and find what you need!</p>
       <h3>Latest Products!</h3>
       {latestProducts.length > 0 ? (
-        latestProducts.map((product) => (
-          <LatestProduct key={product._id} {...product} />
-        ))
+        <div className={styles.latestProductsGrid}>
+          {latestProducts.map((product) => (
+            <Product key={product._id} {...product} />
+          ))}
+        </div>
       ) : (
         <p>There are no products yet!</p>
       )}
