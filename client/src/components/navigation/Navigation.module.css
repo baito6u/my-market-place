@@ -1,26 +1,43 @@
 .nav {
-    background-color: rgb(104, 73, 73);
-    padding: 10px;
-  }
-  
+  background-color: rgb(104, 73, 73);
+  padding: 10px;
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* Ensure it stays on top of other content */
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Adds a slight shadow for better visibility */
+}
+
+.nav ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-around;
+  padding: 0;
+  margin: 0;
+}
+
+.nav li {
+  display: inline;
+  margin: 0 10px;
+}
+
+.nav a {
+  color: white;
+  text-decoration: none;
+}
+
+.nav a:hover {
+  text-decoration: underline;
+}
+
+/* Media query for responsiveness */
+@media (max-width: 768px) {
   .nav ul {
-    list-style-type: none;
-    display: flex;
-    justify-content: space-around;
-    padding: 0;
+    flex-direction: column;
+    align-items: center;
   }
-  
+
   .nav li {
-    display: inline;
-    margin: 0 10px;
+    margin: 10px 0;
   }
-  
-  .nav a {
-    color: white;
-    text-decoration: none;
-  }
-  
-  .nav a:hover {
-    text-decoration: underline;
-  }
-  
+}
