@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-
 import styles from "./CatalogPage.module.css";
-
 import Product from "./productItem/Product";
 import productsAPI from "../../api/productsAPI";
 
@@ -12,7 +10,6 @@ function CatalogPage() {
     productsAPI
       .getAll()
       .then((result) => {
-        // Assuming each product has a '_createdOn' field
         const sortedProducts = result.sort((a, b) => new Date(b._createdOn) - new Date(a._createdOn));
         setProducts(sortedProducts);
       })
@@ -26,9 +23,11 @@ function CatalogPage() {
       <h2>Catalog</h2>
 
       {products.length > 0 ? (
-        products.map((product) => <Product key={product._id} {...product} />)
+        <div className={styles.productsGrid}>
+          {products.map((product) => <Product key={product._id} {...product} />)}
+        </div>
       ) : (
-        <h3 className="no-products">There is no products in data base yet!</h3>
+        <h3 className={styles.noProducts}>There is no products in data base yet!</h3>
       )}
     </div>
   );
