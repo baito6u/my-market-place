@@ -24,7 +24,7 @@ function Navigation() {
               <Link to="/create">Add Product</Link>
             </li>
             <li>
-              <Link to="/cart">My Cart</Link>
+              <Link to="/mycart">My Cart</Link>
             </li>
             <li>
               <Link to="/logout">Logout</Link>
