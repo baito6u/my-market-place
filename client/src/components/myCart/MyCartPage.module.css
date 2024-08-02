@@ -1,4 +1,37 @@
 .cart {
-    padding: 20px;
-  }
-  
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.cartItem {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+}
+
+.image {
+  max-width: 150px;
+  margin-right: 20px;
+}
+
+.details {
+  flex-grow: 1;
+}
+
+.btn {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #ff1a1a;
+}
+
+.no-products {
+  text-align: center;
+}
