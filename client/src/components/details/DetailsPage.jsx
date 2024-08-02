@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 
 import styles from "./DetailsPage.module.css";
 
@@ -16,6 +16,7 @@ function DetailsPage() {
   const [comments, setComments] = useState([]);
   const [message, setMessage] = useState("");
   const { productId } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     (async () => {
@@ -29,10 +30,7 @@ function DetailsPage() {
   const addCommentHandler = async (values) => {
     const newComment = await commentAPI.create(productId, values.comment);
 
-    setComments((state) => [
-      ...state,
-      { ...newComment, owner: { username } },
-    ]);
+    setComments((state) => [...state, { ...newComment, owner: { username } }]);
   };
 
   const deleteButtonClickHandler = async () => {
@@ -59,65 +57,79 @@ function DetailsPage() {
 
   return (
     <div className={styles.details}>
-      <h2>Title: {product.title}</h2>
-      <h6>Category: {product.category}</h6>
-      <p>Price: ${product.price}</p>
-      <img src={product.imageUrl} alt={product.title} />
-      <p>Description: {product.description}</p>
+      <div className={styles.card}>
+        <h2 className={styles.title}>Title: {product.title}</h2>
+        <img
+          className={styles.image}
+          src={product.imageUrl}
+          alt={product.title}
+        />
+        <h6 className={styles.category}>Category: {product.category}</h6>
+        <p className={styles.price}>Price: ${product.price}</p>
+        <p className={styles.description}>Description: {product.description}</p>
 
-      {isAuthenticated && !isOwner && (
-        <>
-          <button onClick={addToCartHandler} className={styles.btn}>
-            Add to Cart
-          </button>
-          {message && <p className={styles.successMessage}>{message}</p>}
-        </>
-      )}
+        {isAuthenticated && !isOwner && (
+          <>
+            <button onClick={addToCartHandler} className={styles.btn}>
+              Add to Cart
+            </button>
+            {message && <p className={styles.successMessage}>{message}</p>}
+          </>
+        )}
 
-      <div className={styles.comments}>
-        <h3>Comments</h3>
-        <ul>
-          {comments.map(({ _id, comment, owner: { username } }) => (
-            <li key={_id} className={styles.comment}>
-              <p>
-                <strong>{username}</strong>: {comment}
-              </p>
-            </li>
-          ))}
-        </ul>
+        <div className={styles.comments}>
+          <h3>Comments</h3>
+          <ul className={styles.commentList}>
+            {comments.map(({ _id, comment, owner: { username } }) => (
+              <li key={_id} className={styles.comment}>
+                <p>
+                  <strong>{username}</strong>: {comment}
+                </p>
+              </li>
+            ))}
+          </ul>
 
-        {comments.length === 0 && (
-          <p className="no-comment">There are no comments added yet!</p>
+          {comments.length === 0 && (
+            <p className={styles.noComment}>There are no comments added yet!</p>
+          )}
+        </div>
+
+        {isAuthenticated && (
+          <form className={styles.commentForm} onSubmit={onSubmit}>
+            <label htmlFor="comment" className={styles.label}>
+              Add Comment:
+            </label>
+            <textarea
+              id="comment"
+              name="comment"
+              value={values.comment}
+              onChange={onChange}
+              placeholder="Enter your comment..."
+              className={styles.textarea}
+            />
+            <button type="submit" className={styles.btn}>
+              Submit Comment
+            </button>
+
+            {isOwner && (
+              <div className={styles.buttons}>
+                <Link
+                  to={`/catalog/${productId}/edit`}
+                  className={styles.button}
+                >
+                  Edit Product
+                </Link>
+                <button
+                  className={`${styles.button} ${styles.delete}`}
+                  onClick={deleteButtonClickHandler}
+                >
+                  Delete Product
+                </button>
+              </div>
+            )}
+          </form>
         )}
       </div>
-      {/* Only for creator of the product */}
-      {isOwner && (
-        <div className="buttons">
-          <Link to={`/catalog/${productId}/edit`} className="button">
-            Edit
-          </Link>
-          <button className="button" onClick={deleteButtonClickHandler}>
-            Delete
-          </button>
-        </div>
-      )}
-
-      {isAuthenticated && (
-        <form className={styles.commentForm} onSubmit={onSubmit}>
-          <label htmlFor="comment">Add Comment:</label>
-          <textarea
-            id="comment"
-            name="comment"
-            value={values.comment}
-            onChange={onChange}
-            placeholder="Enter your comment..."
-          />
-
-          <button type="submit" className={styles.btn}>
-            Submit
-          </button>
-        </form>
-      )}
     </div>
   );
 }
