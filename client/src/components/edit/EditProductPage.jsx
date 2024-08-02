@@ -28,7 +28,7 @@ function EditProductPage() {
 
     try {
       await productsAPI.edit(productId, values);
-      navigate("/catalog");
+      navigate(`/catalog/${productId}/details`);
     } catch (error) {
       // TODO: Error notification
       console.log(error);
