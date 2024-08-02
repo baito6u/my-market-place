@@ -1,6 +1,6 @@
 .nav {
-  background-color: rgb(104, 73, 73);
-  padding: 10px;
+  background-color: rgb(142, 139, 156);
+  padding: 20px;
   position: sticky;
   top: 0;
   z-index: 1000; /* Ensure it stays on top of other content */
