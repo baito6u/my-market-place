@@ -1,11 +1,41 @@
-import React from 'react';
-import styles from './MyCartPage.module.css';
+import { useContext } from "react";
+import styles from "./MyCartPage.module.css";
+import CartContext from "../../contexts/cartContext";
 
 function MyCartPage() {
+  const { cartItems, removeFromCart } = useContext(CartContext);
+
   return (
     <div className={styles.cart}>
       <h2>My Cart</h2>
-      <p>Your cart is empty.</p>
+
+      {cartItems.length > 0 ? (
+        <ul>
+          {cartItems.map((item) => (
+            <li key={item._id} className={styles.cartItem}>
+              <img
+                src={item.imageUrl}
+                alt={item.title}
+                className={styles.image}
+              />
+              <div className={styles.details}>
+                <h3>{item.title}</h3>
+                <p>Category: {item.category}</p>
+                <p>Price: ${item.price}</p>
+                <p>Description: {item.description}</p>
+                <button
+                  onClick={() => removeFromCart(item._id)}
+                  className={styles.btn}
+                >
+                  Remove from Cart
+                </button>
+              </div>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <h3 className="no-products">Your cart is empty!</h3>
+      )}
     </div>
   );
 }
