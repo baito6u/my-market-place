@@ -42,7 +42,7 @@ function App() {
                     path="/catalog/:productId/edit"
                     element={<EditProductPage />}
                   />
-                  <Route path="/cart" element={<MyCartPage />} />
+                  <Route path="/mycart" element={<MyCartPage />} />
                   <Route path="/logout" element={<LogoutPage />} />
                 </Route>
               </Routes>
