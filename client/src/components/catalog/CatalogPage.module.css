@@ -1,8 +1,8 @@
 .catalog {
-  background-color: #888;
-  max-width: 1200px;
+  background-color: rgb(123, 123, 202);
+  
   margin: 0 auto;
-  padding: 20px;
+  padding: 30px;
   font-family: 'Arial', sans-serif;
 }
 
