@@ -13,7 +13,7 @@ const getOne = (productId) => requester.get(`${BASE_URL}/${productId}`);
 export const getLatest = async () => {
   const query = new URLSearchParams({
       //sortBy: `_createdOn desc`,
-      offset: 5,
+      offset: 0,
       pageSize: 3,
   });
 
