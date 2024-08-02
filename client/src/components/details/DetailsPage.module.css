@@ -1,52 +1,204 @@
 .details {
+  max-width: 900px;
+  margin: 20px auto;
   padding: 20px;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-.comments {
-  margin-top: 40px;
-}
-
-.commentForm {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Roboto', sans-serif;
   display: flex;
   flex-direction: column;
+  gap: 20px;
 }
 
-.comment {
-  margin-bottom: 10px;
+.card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  background: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-label {
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-input[type="text"],
-textarea {
-  width: 100%;
-  padding: 10px;
+.image {
+  width: 50%;
+  height: auto;
+  border-radius: 10px;
   margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
 }
 
-textarea {
-  height: 100px;
+.title {
+  font-size: 2rem;
+  color: #333;
+  margin: 0;
 }
 
-.details-btn {
-  padding: 10px 15px;
-  background-color: #007bff;
-  color: white;
+.category {
+  font-size: 1.7rem;
+  color: #666;
+  margin: 10px 0;
+}
+
+.price {
+  font-size: 2rem;
+  color: #555;
+}
+
+.description {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.btn {
+  padding: 12px 24px;
+  font-size: 1rem;
+  color: #fff;
+  background: #007bff;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 10px;
 }
 
 .btn:hover {
-  background-color: #0056b3;
+  background: #0056b3;
+}
+
+.successMessage {
+  color: #28a745;
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+.comments {
+  margin-top: 20px;
+}
+
+.comments h3 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.commentList {
+  list-style: none;
+  padding: 0;
+}
+
+.comment {
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+}
+
+.comment p {
+  font-size: 1rem;
+  color: #444;
+  margin: 0;
+}
+
+.noComment {
+  font-size: 1rem;
+  color: #999;
+  margin: 10px 0;
+}
+
+.commentForm {
+  margin-top: 20px;
+}
+
+.label {
+  display: block;
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.textarea {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  height: 100px;
+  resize: vertical;
+}
+
+.commentForm button {
+  padding: 12px 24px;
+  font-size: 1rem;
+  color: #fff;
+  background: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.commentForm button:hover {
+  background: #0056b3;
+}
+
+.buttons {
+  margin-top: 20px;
+  display: flex;
+
+  gap: 10px;
+}
+
+.button {
+  padding: 12px 24px;
+  font-size: 1rem;
+  color: #fff;
+  background: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.3s ease;
+}
+
+.button:hover {
+  background: #0056b3;
+}
+
+.button.delete {
+  background: #e74c3c;
+}
+
+.button.delete:hover {
+  background: #c0392b;
+}
+
+/* Media query for responsiveness */
+@media (max-width: 768px) {
+  .details {
+    padding: 15px;
+  }
+
+  .title {
+    font-size: 1.75rem;
+  }
+
+  .category {
+    font-size: 1rem;
+  }
+
+  .price,
+  .description {
+    font-size: 1rem;
+  }
+
+  .btn,
+  .commentForm button,
+  .buttons .button {
+    font-size: 0.9rem;
+    padding: 10px 20px;
+  }
+
+  .textarea {
+    height: 80px;
+  }
 }
