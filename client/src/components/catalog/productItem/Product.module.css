@@ -1,88 +1,87 @@
 .productItem {
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    transition: transform 0.2s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  
-  .productItem:hover {
-    transform: translateY(-5px);
-  }
-  
-  .productImage {
-    max-width: 100%;
-    border-radius: 8px;
-  }
-  
-  .productDetails {
-    margin-top: 15px;
-  }
-  
+  background: #ffffffb9;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.productItem:hover {
+  transform: translateY(-5px);
+}
+
+.productImage {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+.productDetails {
+  margin-top: 15px;
+}
+
+.productTitle {
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.productCategory {
+  font-size: 1rem;
+  color: #777;
+}
+
+.productPrice {
+  font-size: 1.2rem;
+  color: #28a745;
+  margin-top: 10px;
+}
+
+.productDescription {
+  font-size: 1rem;
+  color: #555;
+  margin-top: 15px;
+}
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #fff;
+  background: #007bff;
+  border: none;
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  align-self: flex-start;
+}
+
+.button:hover {
+  background: #0056b3;
+}
+
+/* Media query for small screens */
+@media (max-width: 768px) {
   .productTitle {
-    font-size: 1.5rem;
-    color: #333;
+    font-size: 1.3rem;
   }
-  
+
   .productCategory {
-    font-size: 1rem;
-    color: #777;
+    font-size: 0.9rem;
   }
-  
+
   .productPrice {
-    font-size: 1.2rem;
-    color: #28a745;
-    margin-top: 10px;
+    font-size: 1rem;
   }
-  
+
   .productDescription {
-    font-size: 1rem;
-    color: #555;
-    margin-top: 15px;
+    font-size: 0.9rem;
   }
-  
+
   .button {
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 1rem;
-    color: #fff;
-    background: #007bff;
-    border: none;
-    border-radius: 4px;
-    text-align: center;
-    cursor: pointer;
-    transition: background 0.3s ease;
-    align-self: flex-start;
+    padding: 8px 16px;
+    font-size: 0.9rem;
   }
-  
-  .button:hover {
-    background: #0056b3;
-  }
-  
-  /* Media query for small screens */
-  @media (max-width: 768px) {
-    .productTitle {
-      font-size: 1.3rem;
-    }
-  
-    .productCategory {
-      font-size: 0.9rem;
-    }
-  
-    .productPrice {
-      font-size: 1rem;
-    }
-  
-    .productDescription {
-      font-size: 0.9rem;
-    }
-  
-    .button {
-      padding: 8px 16px;
-      font-size: 0.9rem;
-    }
-  }
-  
+}
