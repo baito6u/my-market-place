@@ -1,56 +1,88 @@
-.allProducts {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+.productItem {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.2s ease;
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .productItem:hover {
+    transform: translateY(-5px);
+  }
+  
+  .productImage {
     max-width: 100%;
-    margin: 15px;
-    overflow: hidden;
-    width: 600px auto;
-    min-height: 210px;
-    height: auto;
-}
-
-.allProductsInfo {
-    padding: 30px;
-    position: relative;
-    width: 100%;
-}
-
-.allProductsInfo>img {
-    margin-top: -10px;
-    border-radius: 50%;
-    height: 140px;
-    position: absolute;
-    top: 30px;
-    right: 30px;
-    float: right;
-    padding: 5px;
-    width: 140px;
-}
-
-.allProductsInfo>h6 {
-    font-size: 20px;
-    font-weight: 750;
-    color: #161618;
-}
-
-.allProductsInfo>h2 {
-    font-size: 20px;
-    font-weight: 750;
-    color: #161618;
-}
-
-.button {
-    background-color: #2A265F;
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+  }
+  
+  .productDetails {
+    margin-top: 15px;
+  }
+  
+  .productTitle {
+    font-size: 1.5rem;
+    color: #333;
+  }
+  
+  .productCategory {
+    font-size: 1rem;
+    color: #777;
+  }
+  
+  .productPrice {
+    font-size: 1.2rem;
+    color: #28a745;
+    margin-top: 10px;
+  }
+  
+  .productDescription {
+    font-size: 1rem;
+    color: #555;
+    margin-top: 15px;
+  }
+  
+  .button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1rem;
     color: #fff;
-    font-size: 20px;
-    position: absolute;
-    bottom: 30px;
-    text-align: left;
-    letter-spacing: 1px;
-    padding: 10px;
-    margin-top: auto;
-    margin-left: 20px;
-}
+    background: #007bff;
+    border: none;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    align-self: flex-start;
+  }
+  
+  .button:hover {
+    background: #0056b3;
+  }
+  
+  /* Media query for small screens */
+  @media (max-width: 768px) {
+    .productTitle {
+      font-size: 1.3rem;
+    }
+  
+    .productCategory {
+      font-size: 0.9rem;
+    }
+  
+    .productPrice {
+      font-size: 1rem;
+    }
+  
+    .productDescription {
+      font-size: 0.9rem;
+    }
+  
+    .button {
+      padding: 8px 16px;
+      font-size: 0.9rem;
+    }
+  }
+  
