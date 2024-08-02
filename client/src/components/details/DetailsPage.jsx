@@ -1,18 +1,20 @@
 import { useContext, useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import styles from "./DetailsPage.module.css";
 
 import productsAPI from "../../api/productsAPI";
 import commentAPI from "../../api/commentAPI";
 import AuthContext from "../../contexts/authContext";
+import CartContext from "../../contexts/cartContext";
 import useForm from "../../hooks/useForm";
 
 function DetailsPage() {
-  const navigate = useNavigate();
-  const { username, userId } = useContext(AuthContext);
+  const { username, userId, isAuthenticated } = useContext(AuthContext);
+  const { addToCart } = useContext(CartContext);
   const [product, setProduct] = useState({});
   const [comments, setComments] = useState([]);
+  const [message, setMessage] = useState("");
   const { productId } = useParams();
 
   useEffect(() => {
@@ -25,43 +27,52 @@ function DetailsPage() {
   }, [productId]);
 
   const addCommentHandler = async (values) => {
+    const newComment = await commentAPI.create(productId, values.comment);
 
-    const newComment = await commentAPI.create(
-      productId,
-      values.comment,
-    );
-
-    setComments(state => [
+    setComments((state) => [
       ...state,
       { ...newComment, owner: { username } },
     ]);
   };
 
   const deleteButtonClickHandler = async () => {
-    const hasConfirmed = confirm(`Are you sure you want to delete ${product.title}`);
+    const hasConfirmed = confirm(
+      `Are you sure you want to delete ${product.title}`
+    );
 
     if (hasConfirmed) {
-        await productsAPI.remove(productId);
-
-        navigate('/catalog');
+      await productsAPI.remove(productId);
+      navigate("/catalog");
     }
-}
+  };
 
-  const {values, onChange, onSubmit} = useForm(addCommentHandler, {
+  const { values, onChange, onSubmit } = useForm(addCommentHandler, {
     comment: "",
   });
 
   const isOwner = userId === product._ownerId;
 
-
+  const addToCartHandler = () => {
+    addToCart(product);
+    setMessage("Product added to cart successfully!");
+  };
 
   return (
     <div className={styles.details}>
       <h2>Title: {product.title}</h2>
       <h6>Category: {product.category}</h6>
       <p>Price: ${product.price}</p>
-      <img src={product.imageUrl} />
+      <img src={product.imageUrl} alt={product.title} />
       <p>Description: {product.description}</p>
+
+      {isAuthenticated && !isOwner && (
+        <>
+          <button onClick={addToCartHandler} className={styles.btn}>
+            Add to Cart
+          </button>
+          {message && <p className={styles.successMessage}>{message}</p>}
+        </>
+      )}
 
       <div className={styles.comments}>
         <h3>Comments</h3>
@@ -76,31 +87,37 @@ function DetailsPage() {
         </ul>
 
         {comments.length === 0 && (
-          <p className="no-comment">Ther are no comments added yet!</p>
+          <p className="no-comment">There are no comments added yet!</p>
         )}
       </div>
-        {/* Only for creator of the product */}
+      {/* Only for creator of the product */}
       {isOwner && (
-      <div className="buttons">
-        <Link to={`/catalog/${productId}/edit`} className="button">Edit</Link>
-        <button className="button" onClick={deleteButtonClickHandler}>Delete</button>
-      </div>
+        <div className="buttons">
+          <Link to={`/catalog/${productId}/edit`} className="button">
+            Edit
+          </Link>
+          <button className="button" onClick={deleteButtonClickHandler}>
+            Delete
+          </button>
+        </div>
       )}
 
-      <form className={styles.commentForm} onSubmit={onSubmit}>
-        <label htmlFor="comment">Add Comment:</label>
-        <textarea
-          id="comment"
-          name="comment"
-          value={values.comment}
-          onChange={onChange}
-          placeholder="Enter your comment..."
-        />
+      {isAuthenticated && (
+        <form className={styles.commentForm} onSubmit={onSubmit}>
+          <label htmlFor="comment">Add Comment:</label>
+          <textarea
+            id="comment"
+            name="comment"
+            value={values.comment}
+            onChange={onChange}
+            placeholder="Enter your comment..."
+          />
 
-        <button type="submit" className={styles.btn}>
-          Submit
-        </button>
-      </form>
+          <button type="submit" className={styles.btn}>
+            Submit
+          </button>
+        </form>
+      )}
     </div>
   );
 }
