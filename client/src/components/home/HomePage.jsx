@@ -22,9 +22,13 @@ function HomePage() {
 
   return (
     <div className={styles.home}>
-      <h1>Welcome to My Market Place</h1>
-      <p>Explore our products and find what you need!</p>
-      <h3>Latest Products!</h3>
+      <div className={styles.header}>
+        <div className={styles.headerText}>
+          <h1>Welcome to My Market Place</h1>
+          <p>Explore our products and find what you need!</p>
+        </div>
+      </div>
+      <h2>Latest Products!</h2>
       {latestProducts.length > 0 ? (
         <div className={styles.latestProductsGrid}>
           {latestProducts.map((product) => (

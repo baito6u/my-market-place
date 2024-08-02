@@ -1,52 +1,68 @@
 .home {
-  background-color: #aa8585;
-  max-width: 1024px;
-  margin: 0 auto;
+  text-align: center;
   padding: 20px;
-  font-family: "Arial", sans-serif;
+}
+
+.header {
+  position: relative;
+  width: 100%;
+  height: 400px; /* Adjust the height as needed */
+  background-image: url('../../../public/images/header-img.jpg'); /* Update with your image path */
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.headerText {
+  position: absolute;
   text-align: center;
 }
 
-.home h1 {
-  font-size: 2.5rem;
-  color: #333;
-  margin-bottom: 10px;
+.header h1 {
+  font-size: 3rem;
+  margin: 0;
 }
 
-.home p {
-  font-size: 1.2rem;
-  color: #666;
-  margin-bottom: 30px;
+.header p {
+  font-size: 1.5rem;
 }
 
-.home h3 {
-  font-size: 2rem;
-  color: #333;
-  margin-bottom: 20px;
-}
-
-/* Use CSS Grid to create a responsive layout for latest products */
 .latestProductsGrid {
+  background-color: rgb(72, 80, 80);
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
+  margin-top: 20px;
 }
 
-/* Media query for small screens */
 @media (max-width: 768px) {
-  .home {
-    padding: 10px;
+  .header {
+    height: 300px;
   }
 
-  .home h1 {
+  .header h1 {
+    font-size: 2.5rem;
+  }
+
+  .header p {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    height: 200px;
+  }
+
+  .header h1 {
     font-size: 2rem;
   }
 
-  .home p {
+  .header p {
     font-size: 1rem;
-  }
-
-  .home h3 {
-    font-size: 1.5rem;
   }
 }
