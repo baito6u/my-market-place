@@ -1,36 +1,99 @@
 .login {
+  max-width: 400px;
+  margin: 50px auto;
   padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+}
+
+.login h2 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.login .error {
+  color: #e74c3c;
+  margin-bottom: 15px;
+}
+
+.login form {
+  display: flex;
+  flex-direction: column;
 }
 
 .formGroup {
   margin-bottom: 15px;
+  text-align: left;
 }
 
-label {
+.formGroup label {
   display: block;
+  font-size: 1rem;
+  color: #333;
   margin-bottom: 5px;
 }
 
-input {
+.formGroup input {
   width: 100%;
-  padding: 8px;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
   box-sizing: border-box;
 }
 
-button {
-  padding: 10px 15px;
-  background-color: #007bff;
-  color: white;
+button[type="submit"] {
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #fff;
+  background: #007bff;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 10px;
 }
 
-button:hover {
-  background-color: #0056b3;
+button[type="submit"]:hover {
+  background: #0056b3;
 }
 
-.error {
-  color: red;
-  font-size: 1.5em;
+.field span {
+  display: inline-block;
+  margin-top: 15px;
+}
+
+.field span a {
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.field span a:hover {
+  color: #0056b3;
+}
+
+/* Media query for small screens */
+@media (max-width: 500px) {
+  .login {
+    padding: 15px;
+  }
+
+  .login h2 {
+    font-size: 1.5rem;
+  }
+
+  .formGroup label,
+  .formGroup input {
+    font-size: 0.9rem;
+  }
+
+  button[type="submit"] {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
 }
