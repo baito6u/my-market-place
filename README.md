@@ -55,6 +55,7 @@ contexts/: Provides context for global state management.
 hooks/: Custom hooks for various functionalities.
 pages/: Contains the main page components (e.g., HomePage, DetailsPage, ContactPage).
 styles/: Global styles and CSS modules.
+
 Key Files:
 src/index.js: Entry point of the React application.
 src/App.js: Main component that includes the Router and defines routes.
@@ -65,6 +66,7 @@ src/pages/NotFoundPage.js: 404 error page component.
 src/components/navigation/Navigation.js: Navigation bar component with a cart counter.
 src/components/product/ProductItem.js: Individual product item card component.
 src/contexts/: Context providers for authentication and cart state management.
+
 Additional Notes:
 Responsive Design: The application uses CSS modules for scoped styles and media queries to ensure a responsive design.
 Modern Practices: The project follows modern React practices, including hooks and context API for state management.
