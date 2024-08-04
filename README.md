@@ -6,9 +6,18 @@ My Market Place is a modern, responsive web application for buying and selling p
 The application consists of both public and private sections, with features for browsing products, viewing product details, managing a shopping cart, user authentication, and managing user-specific products. Additionally, users can leave comments on product pages.
 Key Features:
 Home Page: Displays the latest products in a responsive grid layout.
+![image](https://github.com/user-attachments/assets/5d9bbe76-67f1-4644-b68f-d732cfc82977)
+
 Product Details Page: Shows detailed information about a product, including comments and an option to add the product to the cart.
+![image](https://github.com/user-attachments/assets/831dc14b-e2cc-4a2e-9670-e5d62547444b)
+
 Cart: Allows users to view and manage products they intend to purchase, with a counter displayed in the navigation bar.
-Contact Page: Provides a form for users to get in touch with the marketplace administrators.
+![image](https://github.com/user-attachments/assets/23b2c004-bb22-4881-9c4c-cffc63d68c23)
+
+
+Catalog Page: 
+![image](https://github.com/user-attachments/assets/65554e8f-1e0f-4c42-ac24-ffbed3bc847f)
+
 404 Page: Displays a custom error message for invalid routes.
 Authentication: Users can register, log in, and manage their own products.
 Responsive Design: Ensures the application looks great on all devices, from desktops to mobile phones.
