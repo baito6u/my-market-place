@@ -19,6 +19,7 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import AuthGuard from "./components/guards/AuthGuard";
 import { CartProvider } from "./contexts/cartContext";
 import NotFoundPage from "./components/notFound/NotFoundPage";
+import ContactPage from "./components/contact/ContactPage";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/catalog" element={<CatalogPage />} />
+                <Route path="/contact" element={<ContactPage />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/register" element={<RegisterPage />} />
                 <Route path="/catalog/:productId/details" element={<DetailsPage />}/>
