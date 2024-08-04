@@ -7,14 +7,20 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
 }
 
 .productItem:hover {
   transform: translateY(-5px);
 }
 
+.imageWrapper {
+  height: 300px;
+}
+
 .productImage {
   max-width: 100%;
+  max-height: 300px;
   border-radius: 8px;
   height: auto;
 }

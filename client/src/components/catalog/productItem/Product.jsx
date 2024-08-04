@@ -5,7 +5,9 @@ import styles from "./Product.module.css";
 function Product({ _id, title, category, price, imageUrl }) {
   return (
     <div className={styles.productItem}>
-    <img src={imageUrl} alt={title} className={styles.productImage} />
+      <div className={styles.imageWrapper}>
+        <img src={imageUrl} alt={title} className={styles.productImage} />
+      </div>
     <div className={styles.productDetails}>
       <h3 className={styles.productTitle}>{title}</h3>
       <p className={styles.productCategory}>Category: {category}</p>
