@@ -10,9 +10,7 @@ function Product({ _id, title, category, price, imageUrl }) {
       <h3 className={styles.productTitle}>{title}</h3>
       <p className={styles.productCategory}>Category: {category}</p>
       <p className={styles.productPrice}>${price}</p>
-        <Link to={`/catalog/${_id}/details`} className={styles.button}>
-          Details
-        </Link>
+      <Link to={`/catalog/${_id}/details`} className={styles.button}>Details</Link>
       </div>
     </div>
   );
