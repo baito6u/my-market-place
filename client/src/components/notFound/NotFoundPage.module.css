@@ -1,0 +1,65 @@
+.notFound {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #f8f8f8;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .notFound h1 {
+    font-size: 5rem;
+    color: #684949;
+  }
+  
+  .notFound p {
+    font-size: 1.5rem;
+    margin: 20px 0;
+    color: #333;
+  }
+  
+  .homeLink {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+  }
+  
+  .homeLink:hover {
+    background-color: #5a3d3d;
+  }
+  
+  @media (max-width: 768px) {
+    .notFound h1 {
+      font-size: 4rem;
+    }
+  
+    .notFound p {
+      font-size: 1.25rem;
+    }
+  
+    .homeLink {
+      font-size: 0.9rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .notFound h1 {
+      font-size: 3rem;
+    }
+  
+    .notFound p {
+      font-size: 1rem;
+    }
+  
+    .homeLink {
+      font-size: 0.8rem;
+    }
+  }
+  
