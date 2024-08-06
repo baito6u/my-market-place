@@ -1,6 +1,6 @@
 import * as requester from "./requester";
 
-const BASE_URL = "http://localhost:3030/data/comments";
+const BASE_URL = `${import.meta.env.VITE_API_URL}/data/comments`//"http://localhost:3030/data/comments";
 
 const getAllComments = async (productId) => {
     const query = new URLSearchParams({

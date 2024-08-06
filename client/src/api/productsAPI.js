@@ -1,6 +1,6 @@
 import * as requester from "./requester";
 
-const BASE_URL = "http://localhost:3030/data/products";
+const BASE_URL = `${import.meta.env.VITE_API_URL}/data/products` //"http://localhost:3030/data/products";
 
 const getAll = async () => {
   const result = await requester.get(BASE_URL);
