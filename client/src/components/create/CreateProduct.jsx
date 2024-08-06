@@ -72,7 +72,7 @@ const CreateProduct = () => {
           <h1>Create Product</h1>
           {error && <p className={styles.error}>{error}</p>}
 
-          <label htmlFor="title">Legendary title:</label>
+          <label htmlFor="title">Title:</label>
           <input
             type="text"
             id="title"
