@@ -15,7 +15,7 @@ npm install
 
 Start the Development Server:
 cd server
-node ./server.js
+node server.js
 
 Server is running: Open your web browser and go to http://localhost:3000
 
