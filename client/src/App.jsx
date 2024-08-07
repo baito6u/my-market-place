@@ -21,6 +21,7 @@ import LogoutPage from "./components/logout/LogoutPage";
 import EditProductPage from "./components/edit/EditProductPage";
 import NotFoundPage from "./components/notFound/NotFoundPage";
 import AboutPage from "./components/contact/AboutPage";
+import MyProductsPage from "./components/myProducts/MyProductsPage";
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
                   <Route path="/create" element={<CreateProduct />} />
                   <Route path="/catalog/:productId/edit" element={<EditProductPage />}/>
                   <Route path="/mycart" element={<MyCartPage />} />
+                  <Route path="/myproducts" element={<MyProductsPage />} />
                   <Route path="/logout" element={<LogoutPage />} />
                 </Route>
 

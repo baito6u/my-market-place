@@ -35,6 +35,9 @@ function Navigation() {
               </Link>
             </li>
             <li>
+              <Link to="/myproducts">My Products</Link>
+            </li>
+            <li>
               <Link to="/logout">Logout</Link>
             </li>
           </div>

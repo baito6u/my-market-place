@@ -1,0 +1,21 @@
+.myProducts {
+    background-color: rgb(123, 123, 202);
+    padding: 20px;
+  }
+  
+  .myProducts h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .productsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 2em;
+  }
+  
+  .productsGrid p {
+    text-align: center;
+  }
+  
