@@ -32,11 +32,16 @@
   font-size: 1.5rem;
 }
 
+h2 {
+  margin-top: 20px;
+}
+
 .latestProductsGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
-  margin-top: 20px;
+  margin: 20px;
+  padding-bottom: 2em;
 }
 
 @media (max-width: 768px) {
