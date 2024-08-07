@@ -15,6 +15,7 @@ function DetailsPage() {
   const [product, setProduct] = useState({});
   const [comments, setComments] = useState([]);
   const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
   const { productId } = useParams();
   const navigate = useNavigate();
 
@@ -32,11 +33,15 @@ function DetailsPage() {
   }, [productId]);
 
   const addCommentHandler = async (values) => {
+    if (values.comment.trim() === "") {
+      setError("Comment cannot be empty!");
+      return;
+    }
+    setError("");
+
     try {
       const newComment = await commentAPI.create(productId, values.comment);
-  
       setComments((state) => [...state, { ...newComment, owner: { username } }]);
-  
       onChange({ target: { name: 'comment', value: '' } });
     } catch (error) {
       console.log(error);
@@ -45,7 +50,7 @@ function DetailsPage() {
 
   const deleteButtonClickHandler = async () => {
     const hasConfirmed = confirm(
-      `Are you sure you want to delete ${product.title}`
+      `Are you sure you want to delete ${product.title}?`
     );
 
     if (hasConfirmed) {
@@ -134,6 +139,7 @@ function DetailsPage() {
               placeholder="Enter your comment..."
               className={styles.textarea}
             />
+            {error && <p className={styles.error}>{error}</p>}
             <button type="submit" className={styles.btn}>
               Submit Comment
             </button>
