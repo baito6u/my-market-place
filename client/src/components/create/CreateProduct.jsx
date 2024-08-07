@@ -38,22 +38,22 @@ const CreateProduct = () => {
   const validateForm = (values) => {
     const errors = {};
 
-    if (!values.title) {
-      errors.title = "Title is required";
+    if (!values.title.trim()) {
+      errors.title = "Title is required and cannot be just whitespace";
     }
-    if (!values.category) {
-      errors.category = "Category is required";
+    if (!values.category.trim()) {
+      errors.category = "Category is required and cannot be just whitespace";
     }
     if (!values.price) {
       errors.price = "Price is required";
     } else if (isNaN(values.price) || values.price <= 0) {
       errors.price = "Price must be a positive number";
     }
-    if (!values.imageUrl) {
-      errors.imageUrl = "Image URL is required";
+    if (!values.imageUrl.trim()) {
+      errors.imageUrl = "Image URL is required and cannot be just whitespace";
     }
-    if (!values.description) {
-      errors.description = "Description is required";
+    if (!values.description.trim()) {
+      errors.description = "Description is required and cannot be just whitespace";
     }
 
     return errors;
