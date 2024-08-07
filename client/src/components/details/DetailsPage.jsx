@@ -20,17 +20,27 @@ function DetailsPage() {
 
   useEffect(() => {
     (async () => {
-      const result = await productsAPI.getOne(productId);
-      setProduct(result);
-      const commentsResult = await commentAPI.getAllComments(productId);
-      setComments(commentsResult);
+      try {
+        const result = await productsAPI.getOne(productId);
+        setProduct(result);
+        const commentsResult = await commentAPI.getAllComments(productId);
+        setComments(commentsResult);
+      } catch (error) {
+        console.log(error);    
+      }
     })();
   }, [productId]);
 
   const addCommentHandler = async (values) => {
-    const newComment = await commentAPI.create(productId, values.comment);
+    try {
+      const newComment = await commentAPI.create(productId, values.comment);
+  
+      setComments((state) => [...state, { ...newComment, owner: { username } }]);
 
-    setComments((state) => [...state, { ...newComment, owner: { username } }]);
+      onChange({ target: { name: 'comment', value: '' } });
+    } catch (error){
+      console.log(error);
+    }
   };
 
   const deleteButtonClickHandler = async () => {
