@@ -26,7 +26,7 @@ function DetailsPage() {
         const commentsResult = await commentAPI.getAllComments(productId);
         setComments(commentsResult);
       } catch (error) {
-        console.log(error);    
+        console.log(error);
       }
     })();
   }, [productId]);
@@ -36,9 +36,9 @@ function DetailsPage() {
       const newComment = await commentAPI.create(productId, values.comment);
   
       setComments((state) => [...state, { ...newComment, owner: { username } }]);
-
+  
       onChange({ target: { name: 'comment', value: '' } });
-    } catch (error){
+    } catch (error) {
       console.log(error);
     }
   };
@@ -104,7 +104,24 @@ function DetailsPage() {
           )}
         </div>
 
-        {isAuthenticated && (
+        {isOwner && (
+          <div className={styles.buttons}>
+            <Link
+              to={`/catalog/${productId}/edit`}
+              className={styles.button}
+            >
+              Edit Product
+            </Link>
+            <button
+              className={`${styles.button} ${styles.delete}`}
+              onClick={deleteButtonClickHandler}
+            >
+              Delete Product
+            </button>
+          </div>
+        )}
+
+        {isAuthenticated && !isOwner && (
           <form className={styles.commentForm} onSubmit={onSubmit}>
             <label htmlFor="comment" className={styles.label}>
               Add Comment:
@@ -120,23 +137,6 @@ function DetailsPage() {
             <button type="submit" className={styles.btn}>
               Submit Comment
             </button>
-
-            {isOwner && (
-              <div className={styles.buttons}>
-                <Link
-                  to={`/catalog/${productId}/edit`}
-                  className={styles.button}
-                >
-                  Edit Product
-                </Link>
-                <button
-                  className={`${styles.button} ${styles.delete}`}
-                  onClick={deleteButtonClickHandler}
-                >
-                  Delete Product
-                </button>
-              </div>
-            )}
           </form>
         )}
       </div>
