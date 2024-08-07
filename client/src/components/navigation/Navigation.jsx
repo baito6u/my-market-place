@@ -19,7 +19,7 @@ function Navigation() {
           <Link to="/catalog">Catalog</Link>
         </li>
         <li>
-          <Link to="/contact">Contact</Link>
+          <Link to="/about">About</Link>
         </li>
         {isAuthenticated && (
           <div id="user">
