@@ -1,9 +1,27 @@
 # my-market-place
 React exam project for SoftUni
 
-My Market Place
-My Market Place is a modern, responsive web application for buying and selling products built using Vite and connecting to the SoftUni practice server. It features a home page displaying the latest products, a detailed product page, a cart for managing selected items, a contact page, and a 404 error page for handling invalid routes. 
-The application consists of both public and private sections, with features for browsing products, viewing product details, managing a shopping cart, user authentication, and managing user-specific products. Additionally, users can leave comments on product pages.
+Project Name: My Market Place
+
+Description:
+"My Market Place" is a web application that serves as an online marketplace where users can browse, create, and manage products. The application is built using React with Vite for development and utilizes a practice server from SoftUni. The project is divided into public and private sections, ensuring certain features are only accessible to authenticated users.
+
+Features
+Public Features:
+
+Home Page: Introduction to the marketplace.
+Catalog Page: Browse all available products.
+About Page: Information about the marketplace.
+Login/Register Pages: User authentication.
+Product Details Page: View detailed information about a product.
+Private Features:
+
+Create Product: Authenticated users can add new products.
+My Products Page: Users can view all products they have created.
+Edit Product: Product owners can edit their products.
+My Cart: Users can view and manage the products in their cart.
+Logout: End the user session.
+
 Setup Instructions:
 Clone the Repository:
 
@@ -28,19 +46,22 @@ Project is running: Open your web browser and go to http://localhost:5173
 
 Key Features:
 Home Page: Displays the latest products in a responsive grid layout.
-![image](https://github.com/user-attachments/assets/5d9bbe76-67f1-4644-b68f-d732cfc82977)
+![alt text](image-1.png)
 
 Product Details Page: Shows detailed information about a product, including comments and an option to add the product to the cart.
-![image](https://github.com/user-attachments/assets/831dc14b-e2cc-4a2e-9670-e5d62547444b)
+![alt text](image-2.png)
 
 Cart: Allows users to view and manage products they intend to purchase, with a counter displayed in the navigation bar.
-![image](https://github.com/user-attachments/assets/23b2c004-bb22-4881-9c4c-cffc63d68c23)
-
+![alt text](image-3.png)
 
 Catalog Page: 
-![image](https://github.com/user-attachments/assets/65554e8f-1e0f-4c42-ac24-ffbed3bc847f)
+![alt text](image-4.png)
+
+My Products Page: Users can view all products they have created.
+![alt text](image-5.png)
 
 404 Page: Displays a custom error message for invalid routes.
+
 Authentication: Users can register, log in, and manage their own products.
 Responsive Design: Ensures the application looks great on all devices, from desktops to mobile phones.
 How to Start the Project
