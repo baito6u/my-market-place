@@ -19,8 +19,8 @@ import CreateProduct from "./components/create/CreateProduct";
 import DetailsPage from "./components/details/DetailsPage";
 import LogoutPage from "./components/logout/LogoutPage";
 import EditProductPage from "./components/edit/EditProductPage";
-import ContactPage from "./components/contact/ContactPage";
 import NotFoundPage from "./components/notFound/NotFoundPage";
+import AboutPage from "./components/contact/AboutPage";
 
 function App() {
   return (
@@ -34,7 +34,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/catalog" element={<CatalogPage />} />
-                <Route path="/contact" element={<ContactPage />} />
+                <Route path="/about" element={<AboutPage />} />
                 <Route path="/catalog/:productId/details" element={<DetailsPage />}/>
                 
                 <Route element={<GuestGuard />}>
