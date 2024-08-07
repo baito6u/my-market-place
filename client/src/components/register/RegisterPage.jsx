@@ -25,6 +25,13 @@ function RegisterPage() {
     setValidationError(""); // Clear previous validation error
     setServerError(""); // Clear previous server error
 
+    // Validate form values
+    const errors = validateForm(values);
+    if (errors) {
+      setValidationError(errors);
+      return;
+    }
+
     if (values[RegisterFormKeys.Password] !== values[RegisterFormKeys.Repass]) {
       setValidationError("Passwords do not match.");
       return;
@@ -36,6 +43,25 @@ function RegisterPage() {
       setServerError(error.message);
     }
   }
+
+  const validateForm = (values) => {
+    if (!values[RegisterFormKeys.Username].trim()) {
+      return "Username is required and cannot be just whitespace.";
+    }
+    if (!values[RegisterFormKeys.Email].trim()) {
+      return "Email is required and cannot be just whitespace.";
+    }
+    if (!values[RegisterFormKeys.Password].trim()) {
+      return "Password is required and cannot be just whitespace.";
+    }
+    if (values[RegisterFormKeys.Password].length < 5) {
+      return "Password must be at least 5 characters long.";
+    }
+    if (!values[RegisterFormKeys.Repass].trim()) {
+      return "Confirm Password is required and cannot be just whitespace.";
+    }
+    return null;
+  };
 
   return (
     <div className={styles.register}>
