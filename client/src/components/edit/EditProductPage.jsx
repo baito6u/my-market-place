@@ -11,8 +11,9 @@ function EditProductPage() {
     category: "",
     price: "",
     imageUrl: "",
-    details: "",
+    description: "",
   });
+  const [formErrors, setFormErrors] = useState({});
 
   useEffect(() => {
     productsAPI.getOne(productId)
@@ -26,6 +27,13 @@ function EditProductPage() {
 
     const values = Object.fromEntries(new FormData(e.currentTarget));
 
+    // Validate form values
+    const errors = validateForm(values);
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors);
+      return;
+    }
+
     try {
       await productsAPI.edit(productId, values);
       navigate(`/catalog/${productId}/details`);
@@ -35,12 +43,37 @@ function EditProductPage() {
     }
   };
 
+  const validateForm = (values) => {
+    const errors = {};
+
+    if (!values.title.trim()) {
+      errors.title = "Title is required and cannot be just whitespace";
+    }
+    if (!values.category.trim()) {
+      errors.category = "Category is required and cannot be just whitespace";
+    }
+    if (!values.price) {
+      errors.price = "Price is required";
+    } else if (isNaN(values.price) || values.price <= 0) {
+      errors.price = "Price must be a positive number";
+    }
+    if (!values.imageUrl.trim()) {
+      errors.imageUrl = "Image URL is required and cannot be just whitespace";
+    }
+    if (!values.description.trim()) {
+      errors.description = "Description is required and cannot be just whitespace";
+    }
+
+    return errors;
+  };
+
   const onChange = (e) => {
     setProduct(state => ({
         ...state,
         [e.target.name]: e.target.value
     }));
-};
+    setFormErrors({ ...formErrors, [e.target.name]: "" }); // Clear error for the field being edited
+  };
 
   return (
     <section id="edit-page" className={styles.auth}>
@@ -57,6 +90,7 @@ function EditProductPage() {
             onChange={onChange}
             placeholder="Enter Product title..."
           />
+          {formErrors.title && <p className={styles.error}>{formErrors.title}</p>}
 
           <label htmlFor="category">Category:</label>
           <input
@@ -67,6 +101,7 @@ function EditProductPage() {
             onChange={onChange}
             placeholder="Enter Product category..."
           />
+          {formErrors.category && <p className={styles.error}>{formErrors.category}</p>}
 
           <label htmlFor="price">Price:</label>
           <input
@@ -78,6 +113,7 @@ function EditProductPage() {
             min="1"
             placeholder="1"
           />
+          {formErrors.price && <p className={styles.error}>{formErrors.price}</p>}
 
           <label htmlFor="imageUrl">Image:</label>
           <input
@@ -88,6 +124,7 @@ function EditProductPage() {
             onChange={onChange}
             placeholder="Upload a photo..."
           />
+          {formErrors.imageUrl && <p className={styles.error}>{formErrors.imageUrl}</p>}
 
           <label htmlFor="description">Description:</label>
           <textarea
@@ -96,6 +133,7 @@ function EditProductPage() {
             onChange={onChange}
             id="description"
           ></textarea>
+          {formErrors.description && <p className={styles.error}>{formErrors.description}</p>}
 
           <input
             className={`${styles.btn} ${styles.submit}`}

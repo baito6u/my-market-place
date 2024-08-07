@@ -55,3 +55,8 @@ textarea {
 .btn:hover {
   background-color: #0056b3;
 }
+
+.error {
+  color: #e74c3c;
+  margin-bottom: 15px;
+}
